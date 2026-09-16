@@ -2,31 +2,25 @@
 
 Скрипт замера скорости интернета: делает 10 последовательных GET-запросов к указанному URL (например, «тяжёлой» картинке), измеряет время каждого запроса, суммарный объём скачанных данных и печатает среднюю скорость в МБ/с.
 
-Зависимостей нет — только стандартная библиотека Python. Виртуальным окружением управляет [uv](https://docs.astral.sh/uv/).
-
-## Требования
-
-- [uv](https://docs.astral.sh/uv/getting-started/installation/)
+Зависимостей нет — нужен только установленный [Python 3](https://www.python.org/downloads/).
 
 ## Запуск
 
 ```bash
-uv run speedtest.py <URL>
+python speedtest.py <URL>
 ```
 
 Пример:
 
 ```bash
-uv run speedtest.py https://svs.gsfc.nasa.gov/vis/a030000/a030800/a030877/frames/5760x3240_16x9_01p/BlackMarble_2016_1200m_africa_s_labeled.png
+python speedtest.py https://svs.gsfc.nasa.gov/vis/a030000/a030800/a030877/frames/5760x3240_16x9_01p/BlackMarble_2016_1200m_africa_s_labeled.png
 ```
-
-При первом запуске `uv run` сам создаст виртуальное окружение (`.venv`) и переиспользует его дальше.
 
 ### Опции
 
 ```bash
-uv run speedtest.py <URL> -n 5   # число запросов (по умолчанию 10)
-uv run speedtest.py <URL> -t 10  # таймаут запроса в секундах (по умолчанию 30)
+python speedtest.py <URL> -n 5   # число запросов (по умолчанию 10)
+python speedtest.py <URL> -t 10  # таймаут запроса в секундах (по умолчанию 30)
 ```
 
 ## Пример вывода
@@ -50,3 +44,13 @@ uv run speedtest.py <URL> -t 10  # таймаут запроса в секунд
 - Картинка NASA Black Marble (~15.6 МБ) — из примера выше
 - Cloudflare, размер настраивается параметром: `https://speed.cloudflare.com/__down?bytes=500000` (~0.5 МБ, для быстрых проверок), `?bytes=50000000` (50 МБ)
 - ThinkBroadband 100 МБ: `http://ipv4.download.thinkbroadband.com/100MB.zip`
+
+## Альтернатива: запуск через uv
+
+Если установлен [uv](https://docs.astral.sh/uv/getting-started/installation/), можно запускать так:
+
+```bash
+uv run speedtest.py <URL>
+```
+
+`uv run` сам создаст виртуальное окружение (`.venv`) и переиспользует его дальше. Результат тот же, что и при обычном `python`.
